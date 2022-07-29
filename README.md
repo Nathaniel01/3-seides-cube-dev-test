@@ -17,6 +17,6 @@ The following is a list of all the depedencies and framework used in the applica
 * [React Testing library](https://testing-library.com/docs/react-testing-library/intro/): This is used to run tests.
 
 ## Further Improvements.
-since the project is light weight any frther improvment would be UI. This might include adding function like Text prediction or animations
+Since the project is light weight any frther improvment would be UI. This might include adding function like Text prediction or animations
 
 
