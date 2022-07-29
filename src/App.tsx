@@ -5,12 +5,11 @@ import { fetchData } from './services/utils';
 import { Pokemon, } from './components/Pokemon';
 import { Alert, Button, Card, Nav } from 'react-bootstrap';
 import Navigation from './components/Navigation';
-import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {
   const [pokemon, setPokemon] = useState<any[]>([])
   const [isLoading, setisLoading] = useState<boolean>(false)
-  const [savedPokemon, setSavedPokemon] = useLocalStorage("saved_pokemon", [])
+  const [savedPokemon, setSavedPokemon] = useState<string[]>([])
 
 
   const getPokemon = async (searchString: string) => {
@@ -27,20 +26,17 @@ function App() {
     }
   }
 
-  const savePokemon = (pokemon: any) => {
-    setPokemon(pokemon.name)
-  }
-
-  const getSavedPokemon = (pokemon: any) => {
-    const data = window.localStorage.getItem(pokemon.name)
-    const parsed_data = JSON.parse(data!)
-    return parsed_data
+  const savePokemon = (pokemon_name: string) => {
+    console.log('pokemon', pokemon_name)
+    setSavedPokemon([pokemon_name, ...savedPokemon]);
+    localStorage.setItem('pokemon', JSON.stringify(savedPokemon))
+    console.log("saved!!")
   }
 
   return (
     <div className="App">
-      <Navigation getSavedPokemon={getSavedPokemon} />
-      <Search getPokemon={getPokemon} />
+      <Navigation getSavedPokemon={savedPokemon} />
+      <Search getPokemon={getPokemon} savedPokemon={savedPokemon} />
       <Button style={{}} onClick={() => setPokemon([])}>Clear search</Button>
       {!isLoading && !!pokemon && pokemon.length > 0 &&
         pokemon?.map?.((_pokemon: any) => (

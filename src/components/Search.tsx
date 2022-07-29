@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 interface SearchProps {
     getPokemon: Function
+    savedPokemon: Array<any>
 }
 
 const Search = (props: SearchProps) => {

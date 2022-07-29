@@ -6,7 +6,10 @@ import { Container, Row, Col, Card, ProgressBar, Button } from 'react-bootstrap'
 export const Pokemon = (props: any) => {
     const { types, stats, abilities, name, sprites, savePokemon } = props
 
-
+    const button_handler = (e: any) => {
+        e.preventDefault()
+        savePokemon(name)
+    }
 
     return (
         <Container className='mt-2'>
@@ -46,7 +49,7 @@ export const Pokemon = (props: any) => {
                             </Row>
                         </Card.Body>
                         <Card.Footer>
-                            <Button onClick={savePokemon}>Save Pokemon</Button>
+                            <Button onClick={button_handler}>Save Pokemon</Button>
                         </Card.Footer>
                     </Card>
                 </Col>
